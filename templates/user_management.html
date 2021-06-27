@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% block title %}User Management{% endblock title %}
+<style>
+ .form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+
+</style>
+{% block content %}
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white p-5 rounded shadow">
+     <h5 class="font-weight-light mb-4 text-center">You can manage your users here....</h5>
+
+      <div class="card">
+        <div class="card-header card-header-warning">
+          <h4 class="card-title ">Manage users</h4>
+          <p class="card-category">You can make user admin and assign them roles here</p>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="example" class="table">
+              <thead class=" text-primary">
+         <th>#</th>
+        <th>User Name</th>
+        <th>Assign Roles</th>
+              <th>Add/Remove Admin</th>
+              </thead>
+              <tbody>
+     {% for i in range(0, l) %}
+     <tr>
+
+        <td>{{i}}</td>
+ <td>{{users[i].username}}</td>
+ <td><a href="{{url_for('assign_roles', id=users[i].id)}}" class="btn btn-info btn-sm">Assign Roles</a></td>
+ <td><a href="{{url_for('make_remove_admin', id=users[i].id)}}" class="btn btn-{% if users[i].is_admin %}warning{% else %}success{% endif %} btn-sm">{% if users[i].is_admin %}Remove{% else %}Add{% endif %}</a></td>
+
+
+    </tr>
+     {% endfor %}
+     </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+</div>
+  </div>
+</div>
+
+
+{% endblock content %}

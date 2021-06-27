@@ -1,0 +1,99 @@
+{% extends 'base.html'%}
+{% block title %}Home{% endblock title %}
+<style>
+ .form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+
+</style>
+{% block content %}
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white p-5 rounded shadow">
+     <h5 class="font-weight-light mb-4 text-center">Search stock name to get to know about stock pricing..</h5>
+<div class="card">
+    <div class="card-header">
+                <h5>Scan Stock Here: </h5>
+    </div>
+
+      <div class="card-body">
+          <form action="" method="GET">
+              <div>
+                  <input class="form-control" type="search" name="q" placeholder="enter stock name...">
+              </div>
+              <div class="text-center">
+        <button type="submit" class="btn btn-primary mt-2">Scan</button>
+        </div>
+          </form>
+      </div>
+        <!-- End -->
+    </div>
+          {% if error != '' %}
+          <h4 class="text-center">{{error}}</h4>
+          {% endif %}
+                    {% if show_plot %}
+          <div class="text-center">
+                        "{{q}}" Close price plot
+          <img src="{{graph}}" alt="">
+
+          </div>
+          <h2 class="text-center">The plot is saved successfully!</h2>
+          {% endif %}
+
+            </div>
+      </div>
+
+    </div>
+              	&nbsp;
+          <hr>
+          	&nbsp;
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title ">Searched Scripts</h4>
+                  <p class="card-category">You can see search scripts by folks</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example" class="table">
+                      <thead class=" text-primary">
+                 <th>#</th>
+                <th>User Name</th>
+                <th>Stock Script</th>
+                      </thead>
+                      <tbody>
+             {% for i in range(0, l) %}
+             <tr>
+
+                <td>{{i}}</td>
+         <td>{{return_user_name(scripts[i].user_id)}}</td>
+                 <td>{{scripts[i].script_name}}</td>
+
+
+            </tr>
+             {% endfor %}
+             </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+  </div>
+
+
+</div>
+
+
+{% endblock content %}

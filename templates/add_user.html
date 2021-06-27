@@ -1,0 +1,54 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Login{% endblock title %}
+<style>
+ .form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+
+
+</style>
+{% block content %}
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-lg-8 mx-auto">
+      <div class="bg-white p-5 rounded shadow">
+     <h5 class="font-weight-light mb-4 text-center">You can add new user here...</h5>
+<div class="card">
+      <div class="text-center">
+          <h5 class="card-header">Add New User</h5>
+      </div>
+    <div class="card-body">
+        <form class="form" method="POST" action="/add/user">
+        {{form.hidden_tag()}}
+        {{wtf.form_field(form.email)}}
+        {{wtf.form_field(form.username)}}
+        {{wtf.form_field(form.password)}}
+        <button class="btn btn-lg navbar-mainbg btn-block" style="color:white;" type="submit">Add User</button>
+        </form>
+
+    </div>
+
+    </div>
+        <!-- End -->
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock content %}
